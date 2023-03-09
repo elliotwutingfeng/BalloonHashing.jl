@@ -1,7 +1,7 @@
 # BalloonHashing.jl
 
 [![Julia](https://img.shields.io/badge/Julia-9558B2?style=for-the-badge&logo=julia&logoColor=white)](https://julialang.org)
-[![Codecov Coverage](https://img.shields.io/codecov/c/github/elliotwutingfeng/BalloonHashing.jl?color=bright-green&logo=codecov&style=for-the-badge&token=)](https://codecov.io/gh/elliotwutingfeng/BalloonHashing.jl)
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/elliotwutingfeng/BalloonHashing.jl?color=bright-green&logo=codecov&style=for-the-badge&token=Vu2V70RVNZ)](https://codecov.io/gh/elliotwutingfeng/BalloonHashing.jl)
 
 [![GitHub license](https://img.shields.io/badge/LICENSE-BSD--3--CLAUSE-GREEN?style=for-the-badge)](LICENSE)
 
