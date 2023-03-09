@@ -1,0 +1,20 @@
+name = "BalloonHashing"
+uuid = "b1b0c91a-f863-4673-b369-b75bec74a6db"
+authors = ["Wu Tingfeng <wutingfeng@outlook.com>"]
+version = "1.0.0-DEV"
+
+[deps]
+Coverage = "a2441757-f6aa-5fb2-8edb-039e3f45d037"
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
