@@ -67,6 +67,13 @@ using Test
             test_vector["s_cost"],
             test_vector["t_cost"],
         ) == false
+        @test BalloonHashing.verify(
+            "0"^32,
+            test_vector["password"],
+            test_vector["salt"],
+            test_vector["s_cost"],
+            test_vector["t_cost"],
+        ) == false
     end
 end
 
@@ -169,6 +176,14 @@ end
         ) == true
         @test BalloonHashing.verify_m(
             "0"^64,
+            test_vector["password"],
+            test_vector["salt"],
+            test_vector["s_cost"],
+            test_vector["t_cost"],
+            test_vector["p_cost"],
+        ) == false
+        @test BalloonHashing.verify_m(
+            "0"^32,
             test_vector["password"],
             test_vector["salt"],
             test_vector["s_cost"],
