@@ -53,6 +53,20 @@ using Test
               bytes2hex(
             BalloonHashing.balloon(test_vector["password"], test_vector["salt"], 16, 20, 4),
         )
+        @test BalloonHashing.verify(
+            test_vector["output"],
+            test_vector["password"],
+            test_vector["salt"],
+            test_vector["s_cost"],
+            test_vector["t_cost"],
+        ) == true
+        @test BalloonHashing.verify(
+            "0"^64,
+            test_vector["password"],
+            test_vector["salt"],
+            test_vector["s_cost"],
+            test_vector["t_cost"],
+        ) == false
     end
 end
 
@@ -145,5 +159,21 @@ end
                 4,
             ),
         )
+        @test BalloonHashing.verify_m(
+            test_vector["output"],
+            test_vector["password"],
+            test_vector["salt"],
+            test_vector["s_cost"],
+            test_vector["t_cost"],
+            test_vector["p_cost"],
+        ) == true
+        @test BalloonHashing.verify_m(
+            "0"^64,
+            test_vector["password"],
+            test_vector["salt"],
+            test_vector["s_cost"],
+            test_vector["t_cost"],
+            test_vector["p_cost"],
+        ) == false
     end
 end

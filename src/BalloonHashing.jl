@@ -112,8 +112,8 @@ for a more friendly function with default values
 that returns a hex string, see the function `balloon_hash`.
 """
 function balloon(
-    password::AbstractString,
-    salt::AbstractString,
+    password::String,
+    salt::String,
     space_cost::Int,
     time_cost::Int,
     delta::Int = 3,
@@ -199,6 +199,63 @@ function balloon_m_hash(password::String, salt::String)::String
     parallel_cost = 4
 
     return bytes2hex(balloon_m(password, salt, space_cost, time_cost, parallel_cost, delta))
+end
+
+"""
+Compares two strings in constant time to prevent timing analysis
+by avoiding content-based short circuiting behaviour.
+
+If a and b are of different lengths, or if an error occurs,
+a timing attack could theoretically reveal information about
+the types and lengths of a and b, but not their values.
+"""
+function constant_time_compare(a::String, b::String)::Bool
+    if length(a) != length(b)
+        return false
+    end
+    equal = true
+    for x ∈ eachindex(a)
+        equal &= a[x] == b[x]
+    end
+    return equal
+end
+
+"""
+Verify that hash matches password when hashed with salt, space_cost,
+time_cost, and delta.
+"""
+function verify(
+    hash::String,
+    password::String,
+    salt::String,
+    space_cost::Int,
+    time_cost::Int,
+    delta::Int = 3,
+)::Bool
+    return constant_time_compare(
+        bytes2hex(balloon(password, salt, space_cost, time_cost, delta)),
+        hash,
+    )
+end
+
+"""
+Verify that hash matches password when hashed with salt, space_cost,
+time_cost, parallel_cost, and delta.
+This uses the M-core variant of the Balloon hashing algorithm.
+"""
+function verify_m(
+    hash::String,
+    password::String,
+    salt::String,
+    space_cost::Int64,
+    time_cost::Int64,
+    parallel_cost::Int64,
+    delta::Int64 = 3,
+)::Bool
+    return constant_time_compare(
+        bytes2hex(balloon_m(password, salt, space_cost, time_cost, parallel_cost, delta)),
+        hash,
+    )
 end
 
 end
