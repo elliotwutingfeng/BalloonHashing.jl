@@ -72,6 +72,7 @@ format(".")
 
 ## References
 
+* [Dart implementation](https://github.com/elliotwutingfeng/balloon_hashing)
 * [Kotlin implementation](https://github.com/elliotwutingfeng/balloon-hashing-kotlin)
 * [Python implementation](https://github.com/nachonavarro/balloon-hashing)
 * [Ruby implementation](https://github.com/elliotwutingfeng/balloon-hashing)
