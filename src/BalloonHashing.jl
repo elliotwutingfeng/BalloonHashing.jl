@@ -169,19 +169,15 @@ function balloon_m(
     parallel_cost::Int64,
     delta::Int64 = 3,
 )::Vector{UInt8}
-    output = Vector{UInt8}()
-    results = [output for _ ∈ 1:parallel_cost]
+    results = [Vector{UInt8}() for _ ∈ 1:parallel_cost]
     @sync @distributed for p ∈ 1:parallel_cost
         parallel_salt = [Vector{UInt8}(salt); to_bytes(p)]
         results[p] = _balloon(password, parallel_salt, space_cost, time_cost, delta)
     end
 
-    for result in results
-        if length(output) == 0
-            output = result
-        else
-            output = [a ⊻ b for (a, b) in zip(output, result)]
-        end
+    output = results[1]
+    for result in results[2:end]
+        output = [a ⊻ b for (a, b) in zip(output, result)]
     end
 
     return hash_func(password, salt, output)
