@@ -23,6 +23,9 @@ jobs:
       - uses: julia-actions/julia-processcoverage@v1
       - name: Upload coverage to Coveralls
         uses: coverallsapp/github-action@v2
+        with:
+          format: lcov
+          files: lcov.info
 
   format-markdown:
     runs-on: ubuntu-latest
